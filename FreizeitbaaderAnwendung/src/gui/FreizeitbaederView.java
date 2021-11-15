@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ownUtil.*;
 
+
+
 public class FreizeitbaederView {
 	  
 	private FreizeitbaederModel freizeitbaederModel;
@@ -40,7 +42,7 @@ public class FreizeitbaederView {
     //-------Ende Attribute der grafischen Oberflaeche-------
     
     // speichert temporaer ein Objekt vom Typ Freizeitbad
-    public Freizeitbad freizeitbad;
+   // public Freizeitbad freizeitbad;
     
     public FreizeitbaederView(FreizeitbaederControl freizeitbaederControl, Stage primaryStage, FreizeitbaederModel freizeitbaederModel){
     	Scene scene = new Scene(this.pane, 560, 340);
@@ -146,12 +148,12 @@ public class FreizeitbaederView {
     
     private void nehmeFreizeitbadAuf(){
     	try{
-    		this.freizeitbad = new Freizeitbad(
+    		freizeitbaederModel.setFreizeitbad( new Freizeitbad(
     			txtName.getText(), 
    	            txtGeoeffnetVon.getText(),
    	            txtGeoeffnetBis.getText(),
     		    txtBeckenlaenge.getText(),
-    		    txtWassTemperatur.getText());
+    		    txtWassTemperatur.getText()));
     		zeigeInformationsfensterAn("Das Freizeitbad wurde aufgenommen!");
        	}
        	catch(PlausiException exc){
@@ -160,9 +162,9 @@ public class FreizeitbaederView {
     }
    
     private void zeigeFreizeitbaederAn(){
-    	if(this.freizeitbad != null){
+    	if(freizeitbaederModel.getFreizeitbad() != null){
     		txtAnzeige.setText(
-    			this.freizeitbad.gibFreizeitbadZurueck(' '));
+    				freizeitbaederModel.getFreizeitbad().gibFreizeitbadZurueck(' '));
     	}
     	else{
     		zeigeInformationsfensterAn("Bisher wurde kein Freizeitbad aufgenommen!");
@@ -182,14 +184,6 @@ public class FreizeitbaederView {
        	new MeldungsfensterAnzeiger(AlertType.ERROR,
         	fehlertyp + "Fehler", meldung).zeigeMeldungsfensterAn();
     }
-    
-    public Freizeitbad getFreizeitbad() {
-		return this.freizeitbad;
-	}
 
-	public void setFreizeitbad(Freizeitbad freizeitbad) {
-		this.freizeitbad = freizeitbad;
-
-	}
 
 }

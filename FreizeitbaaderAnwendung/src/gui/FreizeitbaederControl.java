@@ -8,32 +8,42 @@ import javafx.stage.Stage;
 
 public class FreizeitbaederControl {
 
+	
 	private FreizeitbaederView freizeitbaederView;
 	private FreizeitbaederModel freizeitbaederModel;
 	
+	
 	public FreizeitbaederControl(Stage primaryStage){
 		this.freizeitbaederModel = new FreizeitbaederModel();
-		this.freizeitbaederView = new FreizeitbaederView(this, primaryStage, freizeitbaederModel);
+		this.freizeitbaederView = new FreizeitbaederView(this, primaryStage, 
+			freizeitbaederModel);
+	
 	}
+	
 	
 	void schreibeFreizeitbadInDatei(String typ){
 	   	try{
 	   		if("csv".equals(typ)){
-	   			freizeitbaederModel.schreibeFreizeitbadInCsvDatei(freizeitbaederView);
-	   			freizeitbaederView.zeigeInformationsfensterAn( "Das Freizeitbad wurde gespeichert!");
+	   			this.freizeitbaederModel.schreibeFreizeitbaederInCsvDatei();
+	   			this.freizeitbaederView.zeigeInformationsfensterAn(
+	   				"Das Freizeitbad wurde gespeichert!");
+	   		}else if("txt".equals(typ)){
+	   			freizeitbaederModel.schreibeFreizeitbaederInTxTDatei();
+	   			freizeitbaederView.zeigeInformationsfensterAn(
+	   				"Das Freizeitbad wurde gespeichert!");
 	   		}
 	   	
 	   		else{
-	   			freizeitbaederView.zeigeInformationsfensterAn(
+	   			this.freizeitbaederView.zeigeInformationsfensterAn(
 	   				"Noch nicht implementiert!");
 	   		}
 	    } 
 		catch(IOException exc){
-			freizeitbaederView.zeigeFehlermeldungsfensterAn("IOEXCEPTION",
+			this.freizeitbaederView.zeigeFehlermeldungsfensterAn("IOEXCEPTION",
 				"IOException beim Speichern!");
 		}
 		catch(Exception exc){
-			freizeitbaederView.zeigeFehlermeldungsfensterAn("EXCEPTION",
+			this.freizeitbaederView.zeigeFehlermeldungsfensterAn("EXCEPTION",
 				"Unbekannter Fehler beim Speichern!");
 		}
     }

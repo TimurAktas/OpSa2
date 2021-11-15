@@ -3,10 +3,15 @@ package business;
 import ownUtil.*;
 
 public class Freizeitbad {
+	
+	// Name des Freizeitbads
     private String name;
+    // Oeffnungszeiten
     private float geoeffnetVon;
     private float geoeffnetBis;
+    // Laenge des laengsten Beckens
     private int beckenlaenge;
+    // Wassertemperatur des laengsten Beckens
     private int temperatur;
 
     public Freizeitbad(String name, String geoeffnetVon, String geoeffnetBis,
