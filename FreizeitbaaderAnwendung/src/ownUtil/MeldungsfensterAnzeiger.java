@@ -4,7 +4,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class MeldungsfensterAnzeiger {
-	
 	private AlertType alertTyp;	
 	private String titel;
 	private String meldung;
@@ -14,7 +13,7 @@ public class MeldungsfensterAnzeiger {
 		this.titel = titel;
 		this.meldung = meldung;
 		if(meldung == null || "".equals(meldung)){
-			this.meldung = "Die Meldung ist nicht vorhanden.";
+			this.meldung = "Meldung nicht vorhanden.";
 		}
 	}
 
@@ -23,6 +22,5 @@ public class MeldungsfensterAnzeiger {
 	    alert.setTitle(this.titel);
 	    alert.setContentText(this.meldung);
 	    alert.showAndWait();
-    }   
-
+    }
 }

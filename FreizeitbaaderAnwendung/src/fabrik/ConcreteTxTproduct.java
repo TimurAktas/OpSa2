@@ -10,7 +10,6 @@ public class ConcreteTxTproduct extends Product{
     private BufferedWriter bw;
 
     public ConcreteTxTproduct() {
-    	
         try {
             bw = new BufferedWriter(new FileWriter("Freizeitbad.txt", true));
         } catch (IOException e) {
@@ -29,7 +28,6 @@ public class ConcreteTxTproduct extends Product{
         bw.write("Beckenlaenge des Freizeitbads:" + "\t\t" + ((Freizeitbad) freizeitbad).getBeckenlaenge() + "\n");
         bw.write("Wassertemperatur des Freizeitbads:" + "\t" + ((Freizeitbad) freizeitbad).getTemperatur() + "\n");
         
-       
         bw.write("\n");
     }
 
@@ -38,5 +36,4 @@ public class ConcreteTxTproduct extends Product{
         // TODO Auto-generated method stub
         bw.close();
     }
-
 }

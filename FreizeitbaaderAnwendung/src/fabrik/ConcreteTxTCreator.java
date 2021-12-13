@@ -9,6 +9,4 @@ public class ConcreteTxTCreator extends Creator {
 		// TODO Auto-generated method stub
 		return new ConcreteTxTproduct();
 	}
-	
-
 }
