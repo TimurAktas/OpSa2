@@ -13,36 +13,34 @@ import observer.Observer;
 
 public final class FreizeitbaederModel implements Observable {
 
-	private ArrayList<Observer> observers = new ArrayList<Observer>();
+	private ArrayList <Freizeitbad> freizeitbaeder = new ArrayList<>();
+	
+	public void addFreizeitbad(Freizeitbad freizeitbad) {
+		freizeitbaeder.add(freizeitbad);
+		notifyObservers();
+	}
 
-	private Freizeitbad freizeitbad;
-	private static FreizeitbaederModel getInstance=null;
+	public ArrayList<Freizeitbad> getFreizeitbad() {
+		return freizeitbaeder;
+	}
 	
 	
 	private FreizeitbaederModel() {
-		super();
 	}
+
+
+	private static final FreizeitbaederModel fbModel = new FreizeitbaederModel();
 
 	public static FreizeitbaederModel getInstance() {
-		if(getInstance==null)
-		getInstance = new FreizeitbaederModel();
-		
-		return getInstance;
-	}
-
-	public Freizeitbad getFreizeitbad() {
-		return this.freizeitbad;
-	}
-
-	public void setFreizeitbad(Freizeitbad freizeitbad) {
-		this.freizeitbad = freizeitbad;
-		notifyObservers();
+		return fbModel;
 	}
 
 	public void schreibeFreizeitbaederInCsvDatei() throws IOException {
 		Creator c = new ConcreteCreator();
 		Product writer = c.factoryMethod();
-		writer.fuegeInDateiHinzu(this.freizeitbad);
+		for(Freizeitbad fzb : freizeitbaeder) {
+			writer.fuegeInDateiHinzu(fzb);
+		}
 		writer.schliesseDatei();
 
 	}
@@ -50,9 +48,15 @@ public final class FreizeitbaederModel implements Observable {
 	public void schreibeFreizeitbaederInTxTDatei() throws IOException {
 		Creator c = new ConcreteTxTCreator();
 		Product writer = c.factoryMethod();
-		writer.fuegeInDateiHinzu(this.freizeitbad);
+		for(Freizeitbad fzb: freizeitbaeder){
+			writer.fuegeInDateiHinzu(fzb);
+		}
 		writer.schliesseDatei();
 	}
+
+
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
+
 	
 	public void addObserver(Observer o) {
 		observers.add(o);
@@ -69,5 +73,5 @@ public final class FreizeitbaederModel implements Observable {
 	}
 
 	@Override
-	public void removeObserver(Observer obs) {}
+	public void removeObserver(Observer obs) { observers.remove(obs);}
 }

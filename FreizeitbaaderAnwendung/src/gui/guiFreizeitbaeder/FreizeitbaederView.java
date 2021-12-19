@@ -20,9 +20,9 @@ public class FreizeitbaederView {
     private Label lblEingabe    	 	= new Label("Eingabe");
     private Label lblAnzeige   	 	    = new Label("Anzeige");
     private Label lblName 				= new Label("Name:");
-    private Label lblGeoeffnetVon   	= new Label("Geöffnet von:");
-    private Label lblGeoeffnetBis  	 	= new Label("Geöffnet bis:");
-    private Label lblBeckenlaenge   	= new Label("Beckenlänge:");
+    private Label lblGeoeffnetVon   	= new Label("Geï¿½ffnet von:");
+    private Label lblGeoeffnetBis  	 	= new Label("Geï¿½ffnet bis:");
+    private Label lblBeckenlaenge   	= new Label("Beckenlï¿½nge:");
     private Label lblWassTemperatur  	= new Label("Wassertemperatur:");
     private TextField txtName 	 		= new TextField();
     private TextField txtGeoeffnetVon	= new TextField();
@@ -41,7 +41,7 @@ public class FreizeitbaederView {
     public FreizeitbaederView(FreizeitbaederControl freizeitbaederControl, Stage primaryStage, FreizeitbaederModel freizeitbaederModel){
     	Scene scene = new Scene(this.pane, 560, 340);
     	primaryStage.setScene(scene);
-    	primaryStage.setTitle("Verwaltung von Freizeitbädern");
+    	primaryStage.setTitle("Verwaltung von Freizeitbï¿½dern");
     	primaryStage.show();
     	this.freizeitbaederControl = freizeitbaederControl;
     	this.freizeitbaederModel = freizeitbaederModel;
@@ -112,31 +112,39 @@ public class FreizeitbaederView {
    }
    
    private void initListener() {
-	    btnEingabe.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-        	    nehmeFreizeitbadAuf();
-            }
-	    });
-	    btnAnzeige.setOnAction(new EventHandler<ActionEvent>() {
-	    	@Override
-	        public void handle(ActionEvent e) {
-	            zeigeFreizeitbaederAn();
-	        } 
-   	    });  
+	    // btnEingabe.setOnAction(new EventHandler<ActionEvent>() {
+        //     @Override
+        //     public void handle(ActionEvent e) {
+        // 	    nehmeFreizeitbadAuf();
+        //     }
+	    // });
+	    // btnAnzeige.setOnAction(new EventHandler<ActionEvent>() {
+	    // 	@Override
+	    //     public void handle(ActionEvent e) {
+	    //         zeigeFreizeitbaederAn();
+	    //     } 
+   	    // });  
 	    
-	    mnItmCsvExport.setOnAction(new EventHandler<ActionEvent>() {
-	    	@Override
-	        public void handle(ActionEvent e) {
-	    		schreibeFreizeitbadInDatei("csv");
-	        } 
-        });
-        mnItmTxtExport.setOnAction(new EventHandler<ActionEvent>() {
-	    	@Override
-	        public void handle(ActionEvent e) {
-	    		schreibeFreizeitbadInDatei("txt");
-	        } 
-        });
+	    // mnItmCsvExport.setOnAction(new EventHandler<ActionEvent>() {
+	    // 	@Override
+	    //     public void handle(ActionEvent e) {
+	    // 		schreibeFreizeitbadInDatei("csv");
+	    //     } 
+        // });
+        // mnItmTxtExport.setOnAction(new EventHandler<ActionEvent>() {
+	    // 	@Override
+	    //     public void handle(ActionEvent e) {
+	    // 		schreibeFreizeitbadInDatei("txt");
+	    //     } 
+		// });
+		
+		btnEingabe.setOnAction(e -> nehmeFreizeitbadAuf());
+			
+		btnAnzeige.setOnAction(e -> zeigeFreizeitbaederAn());
+		
+		mnItmCsvExport.setOnAction(e -> schreibeFreizeitbaederInDatei("csv"));
+		
+		mnItmTxtExport.setOnAction(e -> schreibeFreizeitbaederInDatei("txt"));
 	    
     }
     
@@ -155,13 +163,19 @@ public class FreizeitbaederView {
     }
    
     public void zeigeFreizeitbaederAn(){
-    	if(freizeitbaederModel.getFreizeitbad() != null){
-    		txtAnzeige.setText(
-    				freizeitbaederModel.getFreizeitbad().gibFreizeitbadZurueck(' '));
-    	}
-    	else{
-    		zeigeInformationsfensterAn("Bisher wurde kein Freizeitbad aufgenommen!");
-    	}
+    	if(freizeitbaederModel.getFreizeitbad().size() > 0) {
+			StringBuffer text = new StringBuffer();
+			//Ergï¿½nze for each schleife ï¿½ber ArrayList
+			
+			for(Freizeitbad fzb : freizeitbaederModel.getFreizeitbad()) {
+				text.append(fzb.gibFreizeitbadZurueck(' ')+"\n");
+			}
+			this.txtAnzeige.setText(text.toString());
+		}else{
+			zeigeInformationsfensterAn(
+				"Bisher wurde kein Freizeitbad aufgenommen!");
+		}
+}	
     }	
     
     private void schreibeFreizeitbadInDatei(String typ){

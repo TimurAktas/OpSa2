@@ -2,6 +2,7 @@ package gui.guiSportstaetten;
 
 import java.io.IOException;
 
+import business.Freizeitbad;
 import business.FreizeitbaederModel;
 import gui.guiFreizeitbaeder.FreizeitbaederControl;
 import javafx.event.*;
@@ -21,7 +22,7 @@ public class SportstaettenView {
 
 	// ---Anfang Attribute der grafischen Oberflaeche---
 	private Pane pane = new Pane();
-	private Label lblAnzeigeFreizeitbaeder = new Label("Anzeige Freizeitbäder");
+	private Label lblAnzeigeFreizeitbaeder = new Label("Anzeige Freizeitbï¿½der");
 	private TextArea txtAnzeigeFreizeitbaeder = new TextArea();
 	private Button btnAnzeigeFreizeitbaeder = new Button("Anzeige");
 
@@ -31,7 +32,7 @@ public class SportstaettenView {
 			FreizeitbaederModel freizeitbaederModel) {
 		Scene scene = new Scene(this.pane, 560, 340);
 		fensterSportstaetten.setScene(scene);
-		fensterSportstaetten.setTitle("Anzeige von Sportstätten");
+		fensterSportstaetten.setTitle("Anzeige von Sportstï¿½tten");
 		fensterSportstaetten.show();
 		
 		// Hier ergaenzen
@@ -75,10 +76,17 @@ public class SportstaettenView {
 	}
 
 	public void zeigeFreizeitbaederAn() {
-		if (freizeitbaederModel.getFreizeitbad() != null) {
-			txtAnzeigeFreizeitbaeder.setText(freizeitbaederModel.getFreizeitbad().gibFreizeitbadZurueck(' '));
-		} else {
-			zeigeInformationsfensterAn("Bisher wurde kein Freizeitbad aufgenommen!");
+		if(freizeitbaederModel.getFreizeitbad().size() > 0) {
+			StringBuffer text = new StringBuffer();
+			//Ergï¿½nze for each schleife ï¿½ber ArrayList
+			
+			for(Freizeitbad fzb : freizeitbaederModel.getFreizeitbad()) {
+				text.append(fzb.gibFreizeitbadZurueck(' ')+"\n");
+			}
+			this.txtAnzeigeFreizeitbaeder.setText(text.toString());
+		}else{
+			zeigeInformationsfensterAn(
+				"Bisher wurde kein Freizeitbad aufgenommen!");
 		}
 	}
 
