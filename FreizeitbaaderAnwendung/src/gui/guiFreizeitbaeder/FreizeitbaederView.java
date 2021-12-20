@@ -142,15 +142,15 @@ public class FreizeitbaederView {
 			
 		btnAnzeige.setOnAction(e -> zeigeFreizeitbaederAn());
 		
-		mnItmCsvExport.setOnAction(e -> schreibeFreizeitbaederInDatei("csv"));
+		mnItmCsvExport.setOnAction(e -> schreibeFreizeitbadInDatei("csv"));
 		
-		mnItmTxtExport.setOnAction(e -> schreibeFreizeitbaederInDatei("txt"));
+		mnItmTxtExport.setOnAction(e -> schreibeFreizeitbadInDatei("txt"));
 	    
     }
     
     private void nehmeFreizeitbadAuf(){
     	try{
-    		freizeitbaederModel.setFreizeitbad( new Freizeitbad(
+    		freizeitbaederModel.addFreizeitbad( new Freizeitbad(
     			txtName.getText(), 
    	            txtGeoeffnetVon.getText(),
    	            txtGeoeffnetBis.getText(),
@@ -176,7 +176,7 @@ public class FreizeitbaederView {
 				"Bisher wurde kein Freizeitbad aufgenommen!");
 		}
 }	
-    }	
+    	
     
     private void schreibeFreizeitbadInDatei(String typ){
     	freizeitbaederControl.schreibeFreizeitbadInDatei(typ);
