@@ -20,9 +20,9 @@ public class FreizeitbaederView {
     private Label lblEingabe    	 	= new Label("Eingabe");
     private Label lblAnzeige   	 	    = new Label("Anzeige");
     private Label lblName 				= new Label("Name:");
-    private Label lblGeoeffnetVon   	= new Label("Geï¿½ffnet von:");
-    private Label lblGeoeffnetBis  	 	= new Label("Geï¿½ffnet bis:");
-    private Label lblBeckenlaenge   	= new Label("Beckenlï¿½nge:");
+    private Label lblGeoeffnetVon   	= new Label("Geöffnet von:");
+    private Label lblGeoeffnetBis  	 	= new Label("Geöffnet bis:");
+    private Label lblBeckenlaenge   	= new Label("Beckenlänge:");
     private Label lblWassTemperatur  	= new Label("Wassertemperatur:");
     private TextField txtName 	 		= new TextField();
     private TextField txtGeoeffnetVon	= new TextField();
@@ -41,7 +41,7 @@ public class FreizeitbaederView {
     public FreizeitbaederView(FreizeitbaederControl freizeitbaederControl, Stage primaryStage, FreizeitbaederModel freizeitbaederModel){
     	Scene scene = new Scene(this.pane, 560, 340);
     	primaryStage.setScene(scene);
-    	primaryStage.setTitle("Verwaltung von Freizeitbï¿½dern");
+    	primaryStage.setTitle("Verwaltung von Freizeitbädern");
     	primaryStage.show();
     	this.freizeitbaederControl = freizeitbaederControl;
     	this.freizeitbaederModel = freizeitbaederModel;

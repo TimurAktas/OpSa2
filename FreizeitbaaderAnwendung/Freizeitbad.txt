@@ -1,0 +1,6 @@
+Daten des Freizeitbades
+Name des Freitzeitbads:				Hans Schwimmer
+Oeffnungszeit des Freizeitbads:		10.0 - 16.0
+Beckenlaenge des Freizeitbads:		200
+Wassertemperatur des Freizeitbads:	12
+
